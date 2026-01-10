@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Whocraft Launcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Bouton fermer -->
+<div id="close-btn">✕</div>
+
+<!-- ========================= -->
+<!-- LOGIN SCREEN -->
+<!-- ========================= -->
+<div id="login-screen">
+    <div class="login-box">
+        <img src="assets/logo.png" alt="Logo Whocraft" class="login-logo">
+        <h2>Bienvenue sur Whocraft</h2>
+        <input type="text" id="pseudo-input" placeholder="Entrez votre pseudo">
+        <button id="login-btn">Continuer</button>
+
+        <div id="loader" style="display:none;">
+        <div class="spinner"></div>
+            <span>Lancement en cours...</span>
+</div>
+
+    </div>
+</div>
+
+<!-- ========================= -->
+<!-- SIDEBAR -->
+<!-- ========================= -->
+<div class="sidebar">
+    <div class="logo">
+        <img src="assets/logo.png" alt="Logo Whocraft">
+    </div>
+
+    <button class="nav-btn" id="btn-news">📰</button>
+    <button class="nav-btn" id="btn-patch">📦</button>
+
+    <!-- Bouton admin caché par défaut -->
+    <button class="nav-btn" id="btn-admin" style="display:none;">🔑</button>
+</div>
+
+<!-- ========================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================= -->
+<div class="main">
+
+    <div class="hero">
+        <h1>Whocraft</h1>
+        <p>Survie Faction Vanilla avec des plugins uniques !</p>
+        <button id="playBtn">JOUER</button>
+        <div id="loader" style="display:none;">
+            <div class="spinner"></div>
+            <span>Lancement en cours...</span>
+        </div>
+
+    </div>
+
+    <div class="content" id="content">
+
+        <!-- ========================= -->
+        <!-- NEWS SECTION -->
+        <!-- ========================= -->
+        <div class="section" id="news-section">
+            <h2>Actualités</h2>
+            <button id="create-news-btn" class="admin-create-btn" style="display:none;">
+                ➕ Créer une annonce
+            </button>
+            <ul id="news-list"></ul>
+        </div>
+
+        <!-- ========================= -->
+        <!-- PATCH SECTION -->
+        <!-- ========================= -->
+        <div class="section" id="patch-section" style="display:none;">
+            <h2>Patch Logs</h2>
+            <button id="create-patch-btn" class="admin-create-btn" style="display:none;">
+                ➕ Créer un patch log
+            </button>
+
+            <ul id="patch-list"></ul>
+        </div>
+
+        <!-- ========================= -->
+        <!-- ADMIN SECTION -->
+        <!-- ========================= -->
+        <div class="section" id="admin-section" style="display:none;">
+            <h2>Admin Whocraft</h2>
+
+            <!-- POPUP MOT DE PASSE -->
+            <div id="admin-login">
+                <p>Entrer le mot de passe admin :</p>
+                <input type="password" id="admin-password" placeholder="Mot de passe admin">
+                <button id="admin-login-btn">Activer le mode admin</button>
+                <p id="admin-error" style="color:#f87171; display:none;"></p>
+            </div>
+
+            <!-- PANNEAU ADMIN -->
+            <div id="admin-panel" style="display:none; margin-top:20px;">
+
+                <h3>Créer une news</h3>
+                <textarea id="admin-news-input" rows="3" placeholder="Texte de la news..."></textarea>
+                <button id="admin-news-btn">Publier la news</button>
+
+                <h3 style="margin-top:20px;">Créer un patch log</h3>
+                <textarea id="admin-patch-input" rows="3" placeholder="Texte du patch log..."></textarea>
+                <button id="admin-patch-btn">Publier le patch log</button>
+
+                <h3 style="margin-top:20px;">News existantes</h3>
+                <ul id="admin-news-list"></ul>
+
+                <h3 style="margin-top:20px;">Patch logs existants</h3>
+                <ul id="admin-patch-list"></ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PLAYER INFO (BOTTOM LEFT) -->
+    <!-- ========================= -->
+    <div class="player-info" id="player-info">
+        <img id="player-skin" src="https://mc-heads.net/avatar/Steve">
+        <span id="player-name">Steve</span>
+        <img id="logout-icon" src="assets/logout.png">
+    </div>
+
+</div>
+<!-- POPUP ADMIN PASSWORD -->
+<div id="admin-popup" class="admin-popup">
+    <div class="admin-popup-box">
+        <h2>🔐 Accès Administrateur</h2>
+        <p>Veuillez entrer le mot de passe admin :</p>
+
+        <input type="password" id="admin-popup-password" placeholder="Mot de passe">
+        <p id="admin-popup-error"></p>
+
+        <div class="admin-popup-buttons">
+            <button id="admin-popup-cancel">Annuler</button>
+            <button id="admin-popup-validate">Valider</button>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP CRÉATION NEWS -->
+<div id="popup-create-news" class="admin-popup">
+    <div class="admin-popup-box">
+        <h2>📰 Nouvelle annonce</h2>
+        <textarea id="popup-news-text" placeholder="Écris ton annonce en Markdown..."></textarea>
+
+        <div class="admin-popup-buttons">
+            <button id="popup-news-cancel">Annuler</button>
+            <button id="popup-news-publish">Publier</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- POPUP CRÉATION PATCHLOG -->
+<div id="popup-create-patch" class="admin-popup">
+    <div class="admin-popup-box">
+        <h2>📦 Nouveau patch log</h2>
+        <textarea id="popup-patch-text" placeholder="Écris ton patch log en Markdown..."></textarea>
+
+        <div class="admin-popup-buttons">
+            <button id="popup-patch-cancel">Annuler</button>
+            <button id="popup-patch-publish">Publier</button>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP CONFIRMATION SUPPRESSION -->
+<div id="popup-delete" class="admin-popup">
+    <div class="admin-popup-box">
+        <h2>❌ Supprimer ?</h2>
+        <p>Cette action est irréversible.</p>
+
+        <div class="admin-popup-buttons">
+            <button id="popup-delete-cancel">Annuler</button>
+            <button id="popup-delete-confirm" class="danger-btn">Supprimer</button>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP DÉSACTIVER MODE ADMIN -->
+<div id="admin-disable-popup" class="admin-popup">
+    <div class="admin-popup-box">
+        <h2>🔓 Désactiver le mode admin ?</h2>
+        <p>Tu ne pourras plus modifier les annonces.</p>
+
+        <div class="admin-popup-buttons">
+            <button id="admin-disable-cancel">Annuler</button>
+            <button id="admin-disable-confirm" class="danger-btn">Désactiver</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
