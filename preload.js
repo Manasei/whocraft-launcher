@@ -20,3 +20,10 @@ contextBridge.exposeInMainWorld("admin", {
     updatePatch: (text) => ipcRenderer.invoke("admin-update-patch", text),
     deletePatch: (id) => ipcRenderer.invoke("admin-delete-patch", id)
 });
+
+// ⭐ API UPDATE ⭐
+contextBridge.exposeInMainWorld("updates", {
+    onUpdateAvailable: (cb) => ipcRenderer.on("update_available", cb),
+    onUpdateDownloaded: (cb) => ipcRenderer.on("update_downloaded", cb),
+    install: () => ipcRenderer.send("install_update")
+});

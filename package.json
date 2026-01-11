@@ -1,6 +1,6 @@
 {
   "name": "whocraft-launcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Launcher Minecraft Whocraft",
   "main": "main.js",
   "scripts": {
@@ -24,18 +24,52 @@
     "prismarine-nbt": "^2.8.0",
     "ws": "^8.19.0"
   },
-  "build": {
-    "appId": "fr.whocraft.launcher",
-    "productName": "Whocraft Launcher",
-    "win": {
-      "target": "nsis"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "Manasei",
-        "repo": "whocraft-launcher"
-      }
-    ]
-  }
-}
+
+"build": {
+  "appId": "whocraft.launcher",
+  "productName": "Whocraft Launcher",
+  "asar": true,
+
+  "files": [
+    "**/*",
+    "!node_modules",
+    "!node_modules/**/*",
+    "!.git",
+    "!dist",
+    "!package-lock.json",
+    "!config/admin.json",
+    "!launcher-data/runtime/java/**/*"
+  ],
+
+  "extraResources": [
+    {
+      "from": "launcher-data/runtime/java",
+      "to": "launcher-data/runtime/java"
+    }
+  ],
+
+  "directories": {
+    "output": "dist"
+  },
+
+  "win": {
+    "target": "nsis",
+    "icon": "icon.ico"
+  },
+
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
+  },
+
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "Manasei",
+      "repo": "whocraft-launcher"
+    }
+  ]
+}}

@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { autoUpdater } = require("electron-updater");
 const path = require("path");
 const adminBridge = require("./adminBridge");
 
@@ -37,8 +38,6 @@ ipcMain.handle("admin-update-patch", async (event, text) => {
     return adminBridge.updatePatch(text);
 });
 
-app.whenReady().then(createWindow);
-
 ipcMain.handle("admin-delete-news", async (event, id) => {
     return adminBridge.deleteNews(id);
 });
@@ -51,13 +50,36 @@ ipcMain.handle("set-pseudo", (event, pseudo) => {
     global.currentPseudo = pseudo;
 });
 
-// IMPORTANT : maintenant on retourne une PROMISE qui se résout quand Minecraft se ferme
+// Lancement Minecraft
 ipcMain.handle("launch-minecraft", async () => {
-    const launcher = require("./minecraft/launcher");
+    const launcher = require("./Minecraft/launcher");
 
     return new Promise(resolve => {
         launcher.start(global.currentPseudo, () => {
             resolve(); // Minecraft fermé → on réactive le bouton
         });
     });
+});
+
+// ⭐ AUTO-UPDATE ⭐
+app.whenReady().then(() => {
+    createWindow();
+
+    // Vérifie les mises à jour
+    autoUpdater.checkForUpdatesAndNotify();
+
+    autoUpdater.on("update-available", () => {
+        console.log("Mise à jour disponible !");
+        mainWindow.webContents.send("update_available");
+    });
+
+    autoUpdater.on("update-downloaded", () => {
+        console.log("Mise à jour téléchargée !");
+        mainWindow.webContents.send("update_downloaded");
+    });
+});
+
+// Installer la mise à jour
+ipcMain.on("install_update", () => {
+    autoUpdater.quitAndInstall();
 });

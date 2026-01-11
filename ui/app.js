@@ -327,5 +327,18 @@ playBtn.addEventListener("click", () => {
     });
 });
 
+// =========================
+// ⭐ AUTO-UPDATE EVENTS ⭐
+// =========================
 
+if (window.updates) {
+    window.updates.onUpdateAvailable(() => {
+        alert("Une nouvelle version du launcher est disponible ! Téléchargement en cours…");
+    });
 
+    window.updates.onUpdateDownloaded(() => {
+        if (confirm("Mise à jour téléchargée ! Installer maintenant ?")) {
+            window.updates.install();
+        }
+    });
+}

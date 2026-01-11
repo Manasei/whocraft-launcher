@@ -160,6 +160,31 @@ body {
     border-bottom: 1px solid #334155;
 }
 
+/* ⭐ SCROLL POUR NEWS ET PATCH LOGS ⭐ */
+#news-list,
+#patch-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Scrollbar stylé */
+#news-list::-webkit-scrollbar,
+#patch-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#news-list::-webkit-scrollbar-thumb,
+#patch-list::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+#news-list::-webkit-scrollbar-thumb:hover,
+#patch-list::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
 #player-info {
     position: fixed;
     bottom: 20px;
