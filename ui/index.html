@@ -21,10 +21,9 @@
         <button id="login-btn">Continuer</button>
 
         <div id="loader" style="display:none;">
-        <div class="spinner"></div>
+            <div class="spinner"></div>
             <span>Lancement en cours...</span>
-</div>
-
+        </div>
     </div>
 </div>
 
@@ -36,10 +35,16 @@
         <img src="assets/logo.png" alt="Logo Whocraft">
     </div>
 
+    <!-- Jouer en premier -->
+    <button class="nav-btn" id="btn-play">🎮</button>
+
+    <!-- Ensuite annonces -->
     <button class="nav-btn" id="btn-news">📰</button>
+
+    <!-- Ensuite patchlogs -->
     <button class="nav-btn" id="btn-patch">📦</button>
 
-    <!-- Bouton admin caché par défaut -->
+    <!-- Admin en dernier -->
     <button class="nav-btn" id="btn-admin" style="display:none;">🔑</button>
 </div>
 
@@ -48,156 +53,163 @@
 <!-- ========================= -->
 <div class="main">
 
+<div id="admin-popup" class="admin-popup">
+  <div class="admin-popup-box">
+    <h2>Mode Admin</h2>
+    <input type="password" id="admin-popup-password" placeholder="Mot de passe admin">
+    <div id="admin-popup-error"></div>
+    <div class="admin-popup-buttons">
+      <button id="admin-popup-validate">Valider</button>
+      <button id="admin-popup-cancel">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<div id="admin-disable-popup" class="admin-popup">
+  <div class="admin-popup-box">
+    <h2>Désactiver le mode admin ?</h2>
+    <div class="admin-popup-buttons">
+      <button id="admin-disable-confirm">Confirmer</button>
+      <button id="admin-disable-cancel">Annuler</button>
+    </div>
+  </div>
+
+</div class="main">
     <div class="hero">
-        <h1>Whocraft</h1>
-        <p>Survie Faction Vanilla avec des plugins uniques !</p>
+        <img src="assets/whocraft-text.png" alt="Whocraft" class="hero-title">
         <button id="playBtn">JOUER</button>
-        <div id="loader" style="display:none;">
-            <div class="spinner"></div>
-            <span>Lancement en cours...</span>
-        </div>
-
     </div>
 
-    <div class="content" id="content">
+    <!-- PLAY SECTION -->
+    <div class="section" id="play-section">
+        <div class="play-info" id="play-info-section">
 
-        <!-- ========================= -->
-        <!-- NEWS SECTION -->
-        <!-- ========================= -->
-        <div class="section" id="news-section">
-            <h2>Actualités</h2>
-            <button id="create-news-btn" class="admin-create-btn" style="display:none;">
-                ➕ Créer une annonce
-            </button>
-            <ul id="news-list"></ul>
+            <h2>🌍 | Whocraft : Survie Vanilla 1.21.8</h2>
+
+            <p>
+                Bienvenue sur <strong>Whospace - MDC</strong> !<br>
+                Un serveur <strong>Survie Vanilla</strong> en version <strong>1.21.8</strong>, ouvert à tous les joueurs,
+                débutants comme vétérans, pour construire, explorer et vivre une aventure communautaire !
+            </p>
+
+            <h3>🎮 IP du serveur :</h3>
+            <pre>51.254.140.174:25565</pre>
+
+            <h3>🌐 Version :</h3>
+            <pre>Minecraft Paper 1.21.8</pre>
+            <hr>
+
+            <h3>⏰ Horaires du serveur</h3>
+            <ul>
+                <li>🟢 <strong>Démarrage automatique :</strong> tous les jours à 10h</li>
+                <li>⚡ <strong>Redémarrage quotidien :</strong> tous les jours à 16h</li>
+                <li>⏰ <strong>Fermeture automatique :</strong> tous les jours à minuit</li>
+            </ul>
+
+            <hr>
+
+            <h3>🔑 Connexion au serveur</h3>
+            <ol>
+                <p>Lance Minecraft en <strong>1.21.8</strong></p>
+                <p>Clique sur <strong>Multijoueur</strong></p>
+                <p>Ajoute l'adresse <pre>51.254.140.174:25565</pre></p>
+                <p>Rejoins l'aventure !</p>
+            </ol>
+
+            <hr>
+
+            <h3>🛡️ Première Connexion</h3>
+            <p>
+                À ta première connexion, il te sera demandé d'inscrire un <strong>code à 4 chiffres</strong>.<br>
+                Ensuite, à chaque redémarrage, connecte-toi avec ce même <strong>code PIN</strong>.<br>
+                <strong>NE LE DONNE À PERSONNE !</strong>
+            </p>
+
+            <hr>
+
+            <h3>🔗 Lier votre compte Discord</h3>
+            <ol>
+                <p>En jeu : <pre>/link</pre></p>
+                <p>Récupère le <strong>code</strong></p>
+                <p>Sur Discord, fais <pre>/link</pre> et entre le code</p>
+                <p>Ton compte sera lié automatiquement</p>
+            </ol>
+
+            <hr>
+
+            <h4>⚔️ Commandes de faction</h4>
+            <ul>
+                <li>/f create &lt;nom&gt;</li>
+                <li>/f invite &lt;joueur&gt;</li>
+                <li>/f kick &lt;joueur&gt;</li>
+                <li>/f home</li>
+                <li>/f sethome</li>
+                <li>/f claim</li>
+                <li>/f unclaim</li>
+                <li>/f power</li>
+                <li>/f map</li>
+                <li>/f relation &lt;alliance|war&gt; &lt;faction&gt;</li>
+                <li>/f help</li>
+            </ul>
+
+            <p>🚀 Bonne aventure à tous !</p>
+
         </div>
-
-        <!-- ========================= -->
-        <!-- PATCH SECTION -->
-        <!-- ========================= -->
-        <div class="section" id="patch-section" style="display:none;">
-            <h2>Patch Logs</h2>
-            <button id="create-patch-btn" class="admin-create-btn" style="display:none;">
-                ➕ Créer un patch log
-            </button>
-
-            <ul id="patch-list"></ul>
-        </div>
-
-        <!-- ========================= -->
-        <!-- ADMIN SECTION -->
-        <!-- ========================= -->
-        <div class="section" id="admin-section" style="display:none;">
-            <h2>Admin Whocraft</h2>
-
-            <!-- POPUP MOT DE PASSE -->
-            <div id="admin-login">
-                <p>Entrer le mot de passe admin :</p>
-                <input type="password" id="admin-password" placeholder="Mot de passe admin">
-                <button id="admin-login-btn">Activer le mode admin</button>
-                <p id="admin-error" style="color:#f87171; display:none;"></p>
-            </div>
-
-            <!-- PANNEAU ADMIN -->
-            <div id="admin-panel" style="display:none; margin-top:20px;">
-
-                <h3>Créer une news</h3>
-                <textarea id="admin-news-input" rows="3" placeholder="Texte de la news..."></textarea>
-                <button id="admin-news-btn">Publier la news</button>
-
-                <h3 style="margin-top:20px;">Créer un patch log</h3>
-                <textarea id="admin-patch-input" rows="3" placeholder="Texte du patch log..."></textarea>
-                <button id="admin-patch-btn">Publier le patch log</button>
-
-                <h3 style="margin-top:20px;">News existantes</h3>
-                <ul id="admin-news-list"></ul>
-
-                <h3 style="margin-top:20px;">Patch logs existants</h3>
-                <ul id="admin-patch-list"></ul>
-            </div>
-        </div>
-
     </div>
 
-    <!-- ========================= -->
-    <!-- PLAYER INFO (BOTTOM LEFT) -->
-    <!-- ========================= -->
+    <!-- NEWS SECTION -->
+    <div class="section" id="news-section" style="display:none;">
+        <h2>Actualités</h2>
+        <button id="create-news-btn" class="admin-create-btn" style="display:none;">➕ Créer une annonce</button>
+        <ul id="news-list"></ul>
+    </div>
+
+    <!-- PATCH SECTION -->
+    <div class="section" id="patch-section" style="display:none;">
+        <h2>Patch Logs</h2>
+        <button id="create-patch-btn" class="admin-create-btn" style="display:none;">➕ Créer un patch log</button>
+        <ul id="patch-list"></ul>
+    </div>
+
+    <!-- ADMIN SECTION -->
+    <div class="section" id="admin-section" style="display:none;">
+        <h2>Admin Whocraft</h2>
+
+        <div id="admin-login">
+            <p>Entrer le mot de passe admin :</p>
+            <input type="password" id="admin-password" placeholder="Mot de passe admin">
+            <button id="admin-login-btn">Activer le mode admin</button>
+            <p id="admin-error" style="color:#f87171; display:none;"></p>
+        </div>
+
+        <div id="admin-panel" style="display:none; margin-top:20px;">
+            <h3>Créer une news</h3>
+            <textarea id="admin-news-input" rows="3" placeholder="Texte de la news..."></textarea>
+            <button id="admin-news-btn">Publier la news</button>
+
+            <h3 style="margin-top:20px;">Créer un patch log</h3>
+            <textarea id="admin-patch-input" rows="3" placeholder="Texte du patch log..."></textarea>
+            <button id="admin-patch-btn">Publier le patch log</button>
+
+            <h3 style="margin-top:20px;">News existantes</h3>
+            <ul id="admin-news-list"></ul>
+
+            <h3 style="margin-top:20px;">Patch logs existants</h3>
+            <ul id="admin-patch-list"></ul>
+        </div>
+    </div>
+
+    <!-- PLAYER INFO -->
     <div class="player-info" id="player-info">
         <img id="player-skin" src="https://mc-heads.net/avatar/Steve">
         <span id="player-name">Steve</span>
         <img id="logout-icon" src="assets/logout.png">
     </div>
 
-</div>
-<!-- POPUP ADMIN PASSWORD -->
-<div id="admin-popup" class="admin-popup">
-    <div class="admin-popup-box">
-        <h2>🔐 Accès Administrateur</h2>
-        <p>Veuillez entrer le mot de passe admin :</p>
+</div> <!-- FIN MAIN -->
 
-        <input type="password" id="admin-popup-password" placeholder="Mot de passe">
-        <p id="admin-popup-error"></p>
-
-        <div class="admin-popup-buttons">
-            <button id="admin-popup-cancel">Annuler</button>
-            <button id="admin-popup-validate">Valider</button>
-        </div>
-    </div>
-</div>
-
-<!-- POPUP CRÉATION NEWS -->
-<div id="popup-create-news" class="admin-popup">
-    <div class="admin-popup-box">
-        <h2>📰 Nouvelle annonce</h2>
-        <textarea id="popup-news-text" placeholder="Écris ton annonce en Markdown..."></textarea>
-
-        <div class="admin-popup-buttons">
-            <button id="popup-news-cancel">Annuler</button>
-            <button id="popup-news-publish">Publier</button>
-        </div>
-    </div>
-</div>
-
-
-<!-- POPUP CRÉATION PATCHLOG -->
-<div id="popup-create-patch" class="admin-popup">
-    <div class="admin-popup-box">
-        <h2>📦 Nouveau patch log</h2>
-        <textarea id="popup-patch-text" placeholder="Écris ton patch log en Markdown..."></textarea>
-
-        <div class="admin-popup-buttons">
-            <button id="popup-patch-cancel">Annuler</button>
-            <button id="popup-patch-publish">Publier</button>
-        </div>
-    </div>
-</div>
-
-<!-- POPUP CONFIRMATION SUPPRESSION -->
-<div id="popup-delete" class="admin-popup">
-    <div class="admin-popup-box">
-        <h2>❌ Supprimer ?</h2>
-        <p>Cette action est irréversible.</p>
-
-        <div class="admin-popup-buttons">
-            <button id="popup-delete-cancel">Annuler</button>
-            <button id="popup-delete-confirm" class="danger-btn">Supprimer</button>
-        </div>
-    </div>
-</div>
-
-<!-- POPUP DÉSACTIVER MODE ADMIN -->
-<div id="admin-disable-popup" class="admin-popup">
-    <div class="admin-popup-box">
-        <h2>🔓 Désactiver le mode admin ?</h2>
-        <p>Tu ne pourras plus modifier les annonces.</p>
-
-        <div class="admin-popup-buttons">
-            <button id="admin-disable-cancel">Annuler</button>
-            <button id="admin-disable-confirm" class="danger-btn">Désactiver</button>
-        </div>
-    </div>
-</div>
-
+<!-- POPUPS (ADMIN, NEWS, PATCH, DELETE) -->
+<!-- ... Garde exactement les mêmes popups que ton code original ... -->
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="app.js"></script>

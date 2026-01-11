@@ -1,12 +1,21 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: url('assets/background.jpg') center/cover no-repeat;
+    background: url('assets/background.gif') center/cover no-repeat;
     color: white;
     display: flex;
     height: 100vh;
     overflow: hidden;
 }
+
+.hero-title {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    height: 30px;
+    pointer-events: none;
+}
+
 
 /* Login screen */
 #login-screen {
@@ -143,12 +152,20 @@ body {
 
 /* Sections */
 .section {
-    background-color: rgba(30,41,59,0.85);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(5px);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
+
+.section.active-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#play-section {
+  background: #222;
+}
+
 
 .section ul {
     list-style: none;
@@ -187,7 +204,7 @@ body {
 
 #player-info {
     position: fixed;
-    bottom: 20px;
+    bottom: 625px;
     left: 75px;
     display: flex;
     align-items: center;
@@ -346,6 +363,99 @@ body {
     background: #00cc66;
 }
 
+
+/* ========================= */
+/* POPUP CREATE NEWS / PATCH */
+/* ========================= */
+#popup-create {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#popup-create > div {
+    background-color: #1f1f1f;
+    padding: 25px;
+    border-radius: 12px;
+    width: 450px;
+    max-width: 90%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    animation: popupFadeIn 0.3s ease-out;
+}
+
+#popup-create h3 {
+    margin: 0 0 15px;
+    font-size: 1.3rem;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+#popup-create textarea {
+    resize: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #2a2a2a;
+    color: #fff;
+    font-size: 1rem;
+    min-height: 120px;
+    outline: none;
+}
+
+#popup-create textarea::placeholder {
+    color: #aaa;
+}
+
+#popup-create button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+#popup-create button#popup-create-confirm {
+    background-color: #4ade80;
+    color: #000;
+}
+
+#popup-create button#popup-create-confirm:hover {
+    background-color: #22c55e;
+}
+
+#popup-create button#popup-create-cancel {
+    background-color: #f87171;
+    color: #fff;
+}
+
+#popup-create button#popup-create-cancel:hover {
+    background-color: #ef4444;
+}
+
+#popup-create div[style*="display:flex; justify-content:flex-end"] {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+@keyframes popupFadeIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
 /* Popup */
 .admin-popup {
     position: fixed;
@@ -473,4 +583,36 @@ body {
     gap: 10px;
     color: white;
     font-size: 14px;
+}
+
+
+/* ========================= */
+/* PLAY SECTION SCROLLABLE */
+/* ========================= */
+#play-section {
+    max-height: calc(100vh - 40px); /* Ajuste selon ton padding de .main */
+    overflow-y: auto; /* Défilement vertical activé */
+    padding-right: 10px; /* Pour éviter que le scroll masque le contenu */
+    scrollbar-width: thin; /* Pour Firefox */
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* Scrollbar stylé pour Webkit */
+#play-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+#play-section::-webkit-scrollbar-track {
+    background: #1f1f1f;
+    border-radius: 4px;
+}
+
+#play-section::-webkit-scrollbar-thumb {
+    background: #4ade80;
+    border-radius: 4px;
+}
+
+#play-section::-webkit-scrollbar-thumb:hover {
+    background: #22c55e;
 }
