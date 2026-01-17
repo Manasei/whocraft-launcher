@@ -1,6 +1,6 @@
 {
   "name": "whocraft-launcher",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Launcher Minecraft Whocraft",
   "main": "main.js",
   "scripts": {
@@ -15,61 +15,56 @@
   "devDependencies": {
     "electron": "^39.2.7",
     "electron-builder": "^26.4.0",
-    "electron-packager": "^17.1.2",
-    "electron-updater": "^6.7.3"
+    "electron-packager": "^17.1.2"
   },
   "dependencies": {
+    "electron-updater": "^6.7.3",
     "minecraft-launcher-core": "^3.18.2",
     "msmc": "^5.0.5",
-    "prismarine-nbt": "^2.8.0",
-    "ws": "^8.19.0"
+    "ws": "^8.19.0",
+    "graceful-fs": "^4.2.11",
+    "fs-extra": "^11.1.1",
+    "universalify": "^2.0.0"
   },
-
-"build": {
-  "appId": "whocraft.launcher",
-  "productName": "Whocraft Launcher",
-  "asar": true,
-
-  "files": [
-    "**/*",
-    "!node_modules",
-    "!node_modules/**/*",
-    "!.git",
-    "!dist",
-    "!package-lock.json",
-    "!config/admin.json",
-    "!launcher-data/runtime/java/**/*"
-  ],
-
-  "extraResources": [
-    {
-      "from": "launcher-data/runtime/java",
-      "to": "launcher-data/runtime/java"
-    }
-  ],
-
-  "directories": {
-    "output": "dist"
-  },
-
-  "win": {
-    "target": "nsis",
-    "icon": "icon.ico"
-  },
-
-  "nsis": {
-    "oneClick": false,
-    "perMachine": false,
-    "allowToChangeInstallationDirectory": true,
-    "createDesktopShortcut": true,
-    "createStartMenuShortcut": true
-  },
-
-  "publish": [
-    {
-      "provider": "github",
-      "owner": "Manasei",
-      "repo": "whocraft-launcher"
-    }
-  ]
-}}
+  "build": {
+    "appId": "whocraft.launcher",
+    "productName": "Whocraft Launcher",
+    "asar": true,
+    "files": [
+      "**/*",
+      "!config/admin.json",
+      "!launcher-data/runtime/java/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "launcher-data/runtime/java",
+        "to": "launcher-data/runtime/java"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Manasei",
+        "repo": "whocraft-launcher"
+      }
+    ]
+  }
+}
